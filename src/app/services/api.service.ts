@@ -20,6 +20,6 @@ export class ApiService {
 
   // Registar Usuario
   public registrarUsuario (data: any): Observable <any>{
-    return this.http.post<any>(`${environment.url_api}/register/`,data, httpOptions);
+    return this.http.post<any>(`${environment.url_api}/register/`, data, httpOptions);
   }
 }

@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 // Servicios de Validación
 import { UserService } from 'src/app/services/user.service';
+
+// Servicios API
+import { ApiService } from 'src/app/services/api.service';
+
 
 // JQuery
 declare var $: any;
@@ -29,7 +34,10 @@ export class RegistroScreenComponent implements OnInit{
 
   constructor(
     private location: Location,
-    private userService: UserService
+    private userService: UserService,
+    private apiService: ApiService,
+    private router: Router
+
   ) {}
 
   ngOnInit(): void {
@@ -71,8 +79,31 @@ export class RegistroScreenComponent implements OnInit{
     this.errors = [];
     this.errors = this.userService.validateUser(this.user)
     console.log("Usuario: ", this.user);
+    console.log("start_time: ", typeof( this.user.start_time));
     if(!$.isEmptyObject(this.errors)){
       return false;
+    }
+
+    //Valida la contraseña
+    if(this.user.password1 == this.user.password2){
+      //Funcion para registrarse
+      alert("Todo OK, Registrando Usuario...");
+
+      this.apiService.registrarUsuario(this.user).subscribe({
+        next: (response) => {
+          alert("Usuario registrado correctamente");
+          console.log("Usuario registrado: ", response);
+          this.router.navigate(["/"]);
+        },
+        error: (error) => {
+          alert("¡Error!: No se Pudo Registrar Usuario");
+        }
+      });
+
+    }else{
+      alert("Las contraseñas no coinciden");
+      this.user.password1="";
+      this.user.password2="";
     }
   }
 }

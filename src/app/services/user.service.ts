@@ -19,7 +19,7 @@ export class UserService {
   public esquemaUser(){
     return {
       'identifier': '',
-      'fist_name': '',
+      'first_name': '',
       'last_name': '',
       'start_time': '',
       'end_time': '',
