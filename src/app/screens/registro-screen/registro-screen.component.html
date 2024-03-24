@@ -15,35 +15,44 @@
                 <!-- Input ID Trabajador -->
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>ID Trabajador</mat-label>
-                    <input matInput [(ngModel)]="user.id" name="id" placeholder="Escribe ID de Trabajador">
+                    <input matInput [(ngModel)]="user.identifier" name="id" placeholder="Escribe ID de Trabajador">
                 </mat-form-field>
-                <div *ngIf="errors.matricula" class="invalid-feedback">{{ errors.matricula }}</div>
+                <div *ngIf="errors.identifier" class="invalid-feedback">{{ errors.identifier }}</div>
 
                 <!-- Input Nombre -->
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>Nombre</mat-label>
-                    <input matInput [(ngModel)]="user.name" placeholder="Escribe Nombre Completo">
+                    <input matInput [(ngModel)]="user.first_name" placeholder="Escribe Nombre">
                 </mat-form-field>
                 <div *ngIf="errors.first_name" class="invalid-feedback">{{ errors.first_name }}</div>
+
+                <!-- Input Nombre -->
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput [(ngModel)]="user.last_name" placeholder="Escribe Apellidos">
+                </mat-form-field>
+                <div *ngIf="errors.last_name" class="invalid-feedback">{{ errors.last_name }}</div>
                 
                 <!-- Hora de Entrada -->
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>Hora de Inicio</mat-label>
                     <input type="time" matInput [(ngModel)]="user.start_time">
                 </mat-form-field>
-                
+                <div *ngIf="errors.start_time" class="invalid-feedback">{{ errors.start_time }}</div>
+
                 <!-- Hora de Salida -->
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>Hora de Fin</mat-label>
                     <input type="time" matInput [(ngModel)]="user.end_time">
                 </mat-form-field>
+                <div *ngIf="errors.end_time" class="invalid-feedback">{{ errors.end_time }}</div>
 
                 <!-- Puesto -->
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>Puesto</mat-label>
-                    <input matInput [(ngModel)]="user.position" placeholder="Escribe Iniciales">
+                    <input matInput [(ngModel)]="user.job" placeholder="Escribe Iniciales">
                 </mat-form-field>
-                <div *ngIf="errors.first_name" class="invalid-feedback">{{ errors.first_name }}</div>
+                <div *ngIf="errors.job" class="invalid-feedback">{{ errors.job }}</div>
 
                 <!-- Input Correo -->
                 <mat-form-field class="mat-input" appearance="outline">

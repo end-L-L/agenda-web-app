@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
+// Servicios de Validación
+import { UserService } from 'src/app/services/user.service';
+
+// JQuery
+declare var $: any;
+
 @Component({
   selector: 'app-registro-screen',
   templateUrl: './registro-screen.component.html',
@@ -22,11 +28,13 @@ export class RegistroScreenComponent implements OnInit{
   public errors:any ={};
 
   constructor(
-    private location: Location
+    private location: Location,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-
+    this.user = this.userService.esquemaUser();
+    console.log("User: ", this.user);
   }
 
   //Funciones para Password
@@ -58,7 +66,13 @@ export class RegistroScreenComponent implements OnInit{
     this.location.back();
   }
 
-  registrar(){
+  public registrar(){
+    //Validar
+    this.errors = [];
+    this.errors = this.userService.validateUser(this.user)
     console.log("Usuario: ", this.user);
+    if(!$.isEmptyObject(this.errors)){
+      return false;
+    }
   }
 }

@@ -1,4 +1,6 @@
 // Angular
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,9 +14,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
+// HTTP Services
+import { HttpClientModule } from '@angular/common/http';
 
 // Screens
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
@@ -36,7 +37,8 @@ import { RegistroScreenComponent } from './screens/registro-screen/registro-scre
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
