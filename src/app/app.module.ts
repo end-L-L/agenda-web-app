@@ -20,12 +20,14 @@ import { HttpClientModule } from '@angular/common/http';
 // Screens
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegistroScreenComponent } from './screens/registro-screen/registro-screen.component';
+import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginScreenComponent,
-    RegistroScreenComponent
+    RegistroScreenComponent,
+    HomeScreenComponent
   ],
   imports: [
     BrowserModule,
