@@ -22,4 +22,9 @@ export class ApiService {
   public registrarUsuario (data: any): Observable <any>{
     return this.http.post<any>(`${environment.url_api}/register/`, data, httpOptions);
   }
+
+  // Registar Contacto Personal
+  public registrarContactoPersonal (data: any): Observable <any>{
+    return this.http.post<any>(`${environment.url_api}/register-personal-contact/`, data, httpOptions);
+  }
 }
