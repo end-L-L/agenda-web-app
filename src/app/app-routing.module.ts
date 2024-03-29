@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'home', component: HomeScreenComponent, pathMatch:'full' },
   { path: 'registro-usuario', component: RegistroScreenComponent, pathMatch:'full' },
   { path: 'registro-contacto-personal', component: RegistroContactoPersonalScreenComponent, pathMatch:'full' },
+  { path: 'registro-contacto-personal/:id', component: RegistroContactoPersonalScreenComponent, pathMatch:'full' }
 ];
 
 @NgModule({
