@@ -21,7 +21,6 @@ const user_email_cookie_name = 'app-web-email';
 const user_id_cookie_name = 'app-web-user_id';
 const user_complete_name_cookie_name = 'app-web-user_complete_name';
 const group_name_cookie_name = 'app-group_name';
-const alias_cookie_name = 'app-web-alias';
 
 @Injectable({
   providedIn: 'root'
@@ -101,7 +100,6 @@ export class FacadeService {
     this.cookieService.set(session_cookie_name, user_data.token, undefined, undefined, undefined, secure, secure?"None":"Lax");
     this.cookieService.set(user_complete_name_cookie_name, user_data.first_name + " " + user_data.last_name, undefined, undefined, undefined, secure, secure?"None":"Lax");
     this.cookieService.set(group_name_cookie_name, user_data.roles, undefined, undefined, undefined, secure, secure?"None":"Lax");
-    this.cookieService.set(alias_cookie_name, user_data.alias, undefined, undefined, undefined, secure, secure?"None":"Lax");
   }
 
   destroyUser(){
@@ -123,9 +121,4 @@ export class FacadeService {
   getUserGroup(){
     return this.cookieService.get(group_name_cookie_name);
   }
-
-  getUserAlias(){
-    return this.cookieService.get(alias_cookie_name);
-  }
-
 }

@@ -1,0 +1,70 @@
+.wrapper {
+    width: 100vw;
+    height: 85vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.section-left, .section-right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    align-items: center; // Asegura que el título esté centrado verticalmente
+    justify-content: flex-start; // Asegura que el título esté centrado horizontalmente
+    gap: 30px; // Espacio entre los elementos
+}
+
+.title-container {
+    text-align: center;
+    font-family: 'Arial', sans-serif; // Fuente elegante y clara
+    color: #333333; // Color oscuro para contraste con el fondo claro
+    background-color: #f8f8f8; // Fondo ligeramente gris para el contenedor del título
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); // Sombra suave para dar profundidad
+    width: 80%; // Ancho relativo para dar espacio alrededor del título
+    //margin: auto; // Asegura centrado horizontal cuando flex no está disponible
+
+}
+
+.title{
+    margin-left: 3rem;
+    font-size: 32px;
+    text-align: left;
+    font-family: Nexa-Bold;
+    letter-spacing: 0px;
+    color: #231F20;
+    text-transform: capitalize;
+    opacity: 1;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    //margin: auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333333;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Sobreescribe el estilo de todos los inputs deshabilitados dentro de mat-form-field */
+mat-form-field input:disabled {
+    color: #231F20;      /* Cambia el color del texto */
+    font-weight: bold; /* Hace el texto en negrita */
+}
+
+/* Estilizar todos los mat-label dentro de mat-form-field en este componente */
+mat-form-field mat-label {
+    color: black; /* Cambia el color del texto */
+    font-size: 18px; /* Aumenta el tamaño del texto */
+}
+
