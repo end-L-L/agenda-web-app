@@ -9,6 +9,7 @@ import { ErrorsService } from './tools/errors.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ContactService {
 
   constructor(
@@ -25,6 +26,18 @@ export class ContactService {
       'phone_1': '',
       'phone_2': '',
       'relationship': '',
+    }
+  }
+
+  public esquemaContactoEmpresarial(){
+    return {
+      'name': '',
+      'sector': '',
+      'address': '',
+      'cp': '',
+      'legal_representative': '',
+      'phone_1': '',
+      'email': '',
     }
   }
 
@@ -57,7 +70,6 @@ export class ContactService {
     }else if (!this.validatorService.email(data['email'])) {
       error['email'] = this.errorService.email;
     }
-
     
     // Validar Telefono 1
     if(!this.validatorService.required(data["phone_1"])){
@@ -80,7 +92,19 @@ export class ContactService {
       }
     }
     
-    //Return arreglo
+    if(idContact == 2){
+      // Validar Sector
+      if(!this.validatorService.required(data["sector"])){
+        error["sector"] = this.errorService.required;
+      }
+
+      // Validar Representante Legal
+      if(!this.validatorService.required(data["legal_representative"])){
+        error["legal_representative"] = this.errorService.required;
+      }
+    }
+
+    // Return arreglo
     return error;
   }
 }

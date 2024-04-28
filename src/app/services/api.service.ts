@@ -39,7 +39,9 @@ export class ApiService {
 
   // Registar Contacto Personal
   public registrarContactoPersonal (data: any): Observable <any>{
-    return this.http.post<any>(`${environment.url_api}/register-personal-contact/`, data, httpOptions);
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.post<any>(`${environment.url_api}/register-personal-contact/`, data, {headers:headers});
   }
 
   // Obtener Datos de Contacto Personal por ID
@@ -52,5 +54,54 @@ export class ApiService {
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
     return this.http.put<any>(`${environment.url_api}/edit-personal-contact/`, data, {headers:headers});
+  }
+
+  // Obtener Lista de Contactos Personales
+  public obtenerContactosPersonales(){
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.get<any>(`${environment.url_api}/list-personal-contacts/`, {headers:headers});
+  }
+
+  // Eliminar Contacto Personal
+  public eliminarContactoPersonal(idContact: Number){
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});  
+    return this.http.delete<any>(`${environment.url_api}/delete-personal-contact/?id=${idContact}`, {headers:headers});
+  }
+
+  // Contactos Empresariales
+
+  // Registar Contacto Empresarial
+  public registrarContactoEmpresarial (data: any): Observable <any>{
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.post<any>(`${environment.url_api}/register-business-contact/`, data, {headers:headers});
+  }
+
+  // Obtener Datos de Contacto Empresarial por ID
+  public getRegistroContactoEmpresarial(idContact: Number){
+    return this.http.get<any>(`${environment.url_api}/register-business-contact/?id=${idContact}`,httpOptions);
+  }
+
+  // Actualizar Contacto Empresarial
+  public actualizarContactoEmpresarial (data: any): Observable <any>{
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.put<any>(`${environment.url_api}/edit-business-contact/`, data, {headers:headers});
+  }
+
+  // Obtener Lista de Contactos Empresariales
+  public obtenerContactosEmpresariales(){
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.get<any>(`${environment.url_api}/list-business-contacts/`, {headers:headers});
+  }
+
+  // Eliminar Contacto Empresarial
+  public eliminarContactoEmpresarial(idContact: Number){
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});  
+    return this.http.delete<any>(`${environment.url_api}/delete-business-contact/?id=${idContact}`, {headers:headers});
   }
 }

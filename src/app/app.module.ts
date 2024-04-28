@@ -14,6 +14,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
+// Mat Table
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+
 // HTTP Services
 import { HttpClientModule } from '@angular/common/http';
 
@@ -22,7 +27,14 @@ import { LoginScreenComponent } from './screens/login-screen/login-screen.compon
 import { RegistroScreenComponent } from './screens/registro-screen/registro-screen.component';
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 import { RegistroContactoPersonalScreenComponent } from './screens/registro-contacto-personal-screen/registro-contacto-personal-screen.component';
+import { DirectorioPersonalScreenComponent } from './screens/directorio-personal-screen/directorio-personal-screen.component';
+import { RegistroContactoEmpresarialScreenComponent } from './screens/registro-contacto-empresarial-screen/registro-contacto-empresarial-screen.component';
+import { DirectorioEmpresarialScreenComponent } from './screens/directorio-empresarial-screen/directorio-empresarial-screen.component';
+
+// Partials & Modals
 import { NavbarComponent } from './partials/navbar/navbar.component';
+import { ActionModalComponent } from './modals/action-modal/action-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +43,11 @@ import { NavbarComponent } from './partials/navbar/navbar.component';
     RegistroScreenComponent,
     HomeScreenComponent,
     RegistroContactoPersonalScreenComponent,
-    NavbarComponent
+    NavbarComponent,
+    DirectorioPersonalScreenComponent,
+    ActionModalComponent,
+    RegistroContactoEmpresarialScreenComponent,
+    DirectorioEmpresarialScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +60,13 @@ import { NavbarComponent } from './partials/navbar/navbar.component';
     MatDatepickerModule,
     MatInputModule,
     MatSelectModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatTableModule,
     HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

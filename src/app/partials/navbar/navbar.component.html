@@ -1,40 +1,40 @@
 <div class="wrapper">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <ng-container >
-              <li class="nav-item">
-                <a class="nav-link active" id="datos-personales" aria-current="page" (click)="clickNavLink('home')">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" id="directorio-personal" aria-current="page" (click)="clickNavLink('directorio-personal')">Directorio Personal</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" id="directorio-empresarial" aria-current="page" (click)="clickNavLink('directorio-empresarial')">Directorio Empresarial</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" id="agenda" aria-current="page" (click)="clickNavLink('agenda-citas')">Agenda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" id="citas" aria-current="page" (click)="clickNavLink('lista-citas')">Lista de Citas</a>
-              </li>
-            </ng-container>
-          </ul>
-          <form class="d-flex">
-            <div class="dropdown">
-              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-circle"></i>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
-              </ul>
-            </div>
-          </form>
-        </div>
-      </div>
-    </nav>
-  </div>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<ng-container>
+						<li class="nav-item">
+							<a class="nav-link" routerLink="/home" routerLinkActive="active">Dashboard</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" routerLink="/directorio-personal" routerLinkActive="active">Directorio Personal</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" routerLink="/directorio-empresarial" routerLinkActive="active">Directorio Empresarial</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link">Agenda</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link">Lista de Citas</a>
+						</li>
+					</ng-container>
+				</ul>
+				<form class="d-flex">
+					<div class="dropdown">
+						<button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-person-circle"></i>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
+						</ul>
+					</div>
+				</form>
+			</div>
+		</div>
+	</nav>
+</div>

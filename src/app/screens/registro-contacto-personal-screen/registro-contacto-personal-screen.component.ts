@@ -7,6 +7,7 @@ import { ContactService } from 'src/app/services/contact.service';
 
 // Servicios API
 import { ApiService } from 'src/app/services/api.service';
+import { FacadeService } from 'src/app/services/facade.service';
 
 // JQuery
 declare var $: any;
@@ -16,15 +17,17 @@ declare var $: any;
   templateUrl: './registro-contacto-personal-screen.component.html',
   styleUrls: ['./registro-contacto-personal-screen.component.scss']
 })
+
 export class RegistroContactoPersonalScreenComponent implements OnInit{
 
-  //Propiedades
+  // Propiedades
   public contact: any = {};
   public contactModel: Number=1;
   public idContact: Number=0;
   public edit: boolean = false;
+  public token: string = "";
 
-  //Errores
+  // Errores
   public errors:any ={};
 
   constructor(
@@ -32,44 +35,37 @@ export class RegistroContactoPersonalScreenComponent implements OnInit{
     private contactService: ContactService,
     private apiService: ApiService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private facadeService: FacadeService
   ) {}
 
   ngOnInit(): void {
-    this.contact = this.contactService.esquemaContactoPersonal();
-    console.log("Contact: ", this.contact);
-
-    //Valida si Existe un Parámetro en la URL
-    if(this.activatedRoute.snapshot.params['id'] != undefined){
-      // Activa la Bandera para edit
-      this.edit = true;
-      // Asigna el Valor del ID en URL
-      this.idContact = this.activatedRoute.snapshot.params['id'];
-      console.log("ID Contact: ", this.idContact);
-      // Al Iniciar la Vista Obtiene el Contacto por su ID
-      this.getRegistroContactoPersonal();
-    }
-  }
-
-  // Obtener Contacto Personal por ID
-  public getRegistroContactoPersonal(){
-    this.apiService.getRegistroContactoPersonal(this.idContact).subscribe({
-      next:(response)=>{
-        this.contact = response;
-        console.log("Datos Contacto: ", this.contact);
-      },
-      error: (error)=>{
-        alert("No se pudieron obtener los datos del usuario para editar");
+    // Validar Token
+    this.token = this.facadeService.getSessionToken();
+    if(this.token == ""){
+      this.router.navigate([""]);
+    }else{
+      this.contact = this.contactService.esquemaContactoPersonal();
+      console.log("Contact: ", this.contact);
+      // Valida si Existe un Parámetro en la URL
+      if(this.activatedRoute.snapshot.params['id'] != undefined){
+        this.edit = true;
+        // Asigna el Valor del ID en URL
+        this.idContact = this.activatedRoute.snapshot.params['id'];
+        console.log("ID Contact: ", this.idContact);
+        // Al Iniciar la Vista Obtiene el Contacto por su ID
+        this.getRegistroContactoPersonal();
       }
-    });
+    }
   }
 
   regresar(){
     this.location.back();
   }
 
+  // Registrar Contacto Personal
   public registrar(){
-    //Validar
+    // Validar
     this.errors = [];
 
     console.log("Contact: ", this.contact);
@@ -78,15 +74,15 @@ export class RegistroContactoPersonalScreenComponent implements OnInit{
     if(!$.isEmptyObject(this.errors)){
       return false;
     }
-    //Registrar
+
     this.apiService.registrarContactoPersonal(this.contact).subscribe({
       next: (response) => {
-        alert("Usuario registrado correctamente");
-        console.log("Usuario registrado: ", response);
-        this.router.navigate(["/"]);
+        alert("Contacto Registrado Correctamente");
+        console.log("Contacto Registrado: ", response);
+        this.router.navigate(["/directorio-personal"]);
       },
       error: (error) => {
-        alert("¡Error!: No se Pudo Registrar Usuario");
+        alert("¡Error!: No se Pudo Registrar Contacto");
       }
     });
   }
@@ -101,18 +97,30 @@ export class RegistroContactoPersonalScreenComponent implements OnInit{
     if(!$.isEmptyObject(this.errors)){
       return false;
     }
-    //Actualizar
+    
     this.apiService.actualizarContactoPersonal(this.contact).subscribe({
       next: (response) => {
-        alert("Usuario actualizado correctamente");
-        console.log("Usuario actualizado: ", response);
-        this.router.navigate(["/"]);
+        alert("Contacto Actualizado Correctamente");
+        console.log("Contacto Actualizado: ", response);
+        this.router.navigate(["/directorio-personal"]);
       },
       error: (error) => {
-        alert("¡Error!: No se Pudo Actualizar Usuario");
+        alert("¡Error!: No se Pudo Actualizar Contacto");
       }
     });
   };
 
+  // Obtener Contacto Personal por ID
+  public getRegistroContactoPersonal(){
+    this.apiService.getRegistroContactoPersonal(this.idContact).subscribe({
+      next:(response)=>{
+        this.contact = response;
+        console.log("Datos Contacto: ", this.contact);
+      },
+      error: (error)=>{
+        alert("¡Error!: Datos del Contacto no Obtenidos");
+      }
+    });
+  }
 }
 
