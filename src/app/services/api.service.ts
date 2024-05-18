@@ -104,4 +104,34 @@ export class ApiService {
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});  
     return this.http.delete<any>(`${environment.url_api}/delete-business-contact/?id=${idContact}`, {headers:headers});
   }
+
+  // FullCalendar
+
+  // Obtener Lista de Contactos por Nombre
+  public obtenerContactos(){
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});  
+    return this.http.get<any>(`${environment.url_api}/contact-names/`, {headers:headers});
+  }
+
+  // Guardar Evento
+  public guardarEvento(data: any): Observable <any>{
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.post<any>(`${environment.url_api}/register-event/`, data, {headers:headers});
+  }
+
+  // Obtener Lista de Eventos
+  public obtenerEventos(){
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.get<any>(`${environment.url_api}/list-events/`, {headers:headers});
+  }
+
+  // Eliminar Evento
+  public eliminarEvento(idEvent: Number){
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});  
+    return this.http.delete<any>(`${environment.url_api}/delete-event/?id=${idEvent}`, {headers:headers});
+  }
 }

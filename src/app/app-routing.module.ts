@@ -7,6 +7,7 @@ import { RegistroContactoPersonalScreenComponent } from './screens/registro-cont
 import { DirectorioPersonalScreenComponent } from './screens/directorio-personal-screen/directorio-personal-screen.component';
 import { RegistroContactoEmpresarialScreenComponent } from './screens/registro-contacto-empresarial-screen/registro-contacto-empresarial-screen.component';
 import { DirectorioEmpresarialScreenComponent } from './screens/directorio-empresarial-screen/directorio-empresarial-screen.component';
+import { AgendaScreenComponent } from './screens/agenda-screen/agenda-screen.component';
 
 const routes: Routes = [
   { path: '', component: LoginScreenComponent, pathMatch:'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'directorio-personal',component: DirectorioPersonalScreenComponent, pathMatch:'full' },
   { path: 'registro-contacto-empresarial', component: RegistroContactoEmpresarialScreenComponent, pathMatch:'full' },
   { path: 'registro-contacto-empresarial/:id', component: RegistroContactoEmpresarialScreenComponent, pathMatch:'full' },
-  { path: 'directorio-empresarial', component: DirectorioEmpresarialScreenComponent, pathMatch:'full' }
+  { path: 'directorio-empresarial', component: DirectorioEmpresarialScreenComponent, pathMatch:'full' },
+  { path: 'agenda', component: AgendaScreenComponent, pathMatch:'full' }
 ];
 
 @NgModule({

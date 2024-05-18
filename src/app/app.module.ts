@@ -30,11 +30,15 @@ import { RegistroContactoPersonalScreenComponent } from './screens/registro-cont
 import { DirectorioPersonalScreenComponent } from './screens/directorio-personal-screen/directorio-personal-screen.component';
 import { RegistroContactoEmpresarialScreenComponent } from './screens/registro-contacto-empresarial-screen/registro-contacto-empresarial-screen.component';
 import { DirectorioEmpresarialScreenComponent } from './screens/directorio-empresarial-screen/directorio-empresarial-screen.component';
+import { AgendaScreenComponent } from './screens/agenda-screen/agenda-screen.component';
 
 // Partials & Modals
 import { NavbarComponent } from './partials/navbar/navbar.component';
 import { ActionModalComponent } from './modals/action-modal/action-modal.component';
 
+// Full Calendar
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { FormModalComponent } from './modals/form-modal/form-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,9 @@ import { ActionModalComponent } from './modals/action-modal/action-modal.compone
     DirectorioPersonalScreenComponent,
     ActionModalComponent,
     RegistroContactoEmpresarialScreenComponent,
-    DirectorioEmpresarialScreenComponent
+    DirectorioEmpresarialScreenComponent,
+    AgendaScreenComponent,
+    FormModalComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +69,8 @@ import { ActionModalComponent } from './modals/action-modal/action-modal.compone
     MatDialogModule,
     MatPaginatorModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
