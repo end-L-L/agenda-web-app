@@ -1,0 +1,121 @@
+.wrapper {
+    width: 100vw;
+    height: 85vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.section-left,
+.section-right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    align-items: center; // asegura que el título esté centrado verticalmente
+    justify-content: flex-start; // asegura que el título esté centrado horizontalmente
+    gap: 30px; // espacio entre los elementos
+}
+
+.title-container {
+    text-align: center;
+    font-family: 'Arial', sans-serif; 
+    color: #333333;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // sombra suave para dar profundidad
+    width: 80%; // ancho relativo para dar espacio alrededor del título
+    //margin: auto; // asegura centrado horizontal cuando flex no está disponible
+
+}
+
+.title {
+    margin-left: 3rem;
+    font-size: 32px;
+    text-align: left;
+    font-family: Nexa-Bold;
+    letter-spacing: 0px;
+    color: #231F20;
+    text-transform: capitalize;
+    opacity: 1;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    //margin: auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333333;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* mat-form */
+
+mat-form-field input:disabled {
+    color: #231F20;
+    /* Cambia el color del texto */
+    font-weight: bold;
+    /* Hace el texto en negrita */
+}
+
+mat-form-field mat-label {
+    color: black;
+    font-size: 18px;
+}
+
+/* right cards */
+
+.cards-container{
+    width: 80%;
+}
+
+.cards-container ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+}
+
+.card-content b {
+    font-weight: 600;
+}
+
+.card-content i {
+    font-style: normal;
+    color: #555;
+}
+
+/* mat-paginator */
+
+::ng-deep .mat-mdc-paginator {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+::ng-deep .mat-mdc-paginator-page-size-label {
+    display: none !important;
+}
+
+::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+}

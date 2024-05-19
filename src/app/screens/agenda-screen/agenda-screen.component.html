@@ -1,0 +1,33 @@
+<div class='demo-app'>
+	<div class='demo-app-sidebar'>
+		<h2>Eventos</h2>
+		<div class='demo-app-sidebar-section'>
+			<ul>
+				<li *ngFor='let event of paginatedEvents'>
+					<b>Fecha: </b> <i>{{getFormattedDate(event.start)}}</i><br>
+					<b>Título: </b> <i>{{event.title}}</i><br>
+					<b>Inicio: </b> <i>{{getFormattedTime(event.start)}}</i><br>
+					<b>Fin: </b> <i>{{getFormattedTime(event.end)}}</i><br>
+					<b>Lugar: </b> <i>{{event.place}}</i><br>
+					<b>Socio: </b> <i>{{event.partner}}</i><br>
+					<b>Descripción: </b> <i>{{event.description}}</i>
+				</li>
+			</ul>
+		</div>
+		<mat-paginator [length]="apiEvents.length" [pageSize]="pageSize" [pageSizeOptions]="[4]"
+			(page)="handlePageEvent($event)">
+		</mat-paginator>
+		<div class="dash-button">
+			<a routerLink="/home" class="button-link">Dashboard</a>
+		</div>
+	</div>
+
+	<div class='demo-app-main'>
+		<full-calendar *ngIf='calendarVisible()' [options]='calendarOptions()'>
+			<ng-template #eventContent let-arg>
+				<i class="custom-event">{{ arg.event.title }}</i>
+			</ng-template>
+		</full-calendar>
+	</div>
+	<hr>
+</div>
