@@ -1,67 +1,86 @@
 <!-- Navbar -->
 <div class="header-home-admin">
-  <app-navbar></app-navbar>
+	<app-navbar></app-navbar>
 </div>
 
 <!-- Content -->
 <div class="wrapper">
-    <div class="section-left">
-      
-      <div class="title-container">
-        <span class="title">Datos Personales</span>
-      </div>
+	<div class="section-left">
 
-      <div class="content-container">
+		<div class="title-container">
+			<span class="title">Datos Personales</span>
+		</div>
 
-        <!-- Input ID Trabajador -->
-        <mat-form-field class="mat-input" appearance="outline" >
-          <mat-label>ID Trabajador</mat-label>
-          <input matInput [(ngModel)]="user.identifier" name="id" [disabled]=true>
-        </mat-form-field>
-      
-        <!-- Input Nombre -->
-        <mat-form-field class="mat-input" appearance="outline">
-          <mat-label>Nombre</mat-label>
-          <input matInput [(ngModel)]="user.first_name" placeholder="Escribe Nombre" [disabled]=true>
-        </mat-form-field>
+		<div class="content-container">
 
-        <!-- Input Apellidos -->
-        <mat-form-field class="mat-input" appearance="outline">
-          <mat-label>Apellidos</mat-label>
-          <input matInput [(ngModel)]="user.last_name" placeholder="Escribe Apellidos" [disabled]=true>
-        </mat-form-field>
-    
-        <!-- Hora de Entrada -->
-        <mat-form-field class="mat-input" appearance="outline">
-          <mat-label>Hora de Inicio</mat-label>
-          <input type="time" matInput [(ngModel)]="user.start_time" [disabled]=true>
-        </mat-form-field>
+			<!-- Input ID Trabajador -->
+			<mat-form-field class="mat-input" appearance="outline">
+				<mat-label>ID Trabajador</mat-label>
+				<input matInput [(ngModel)]="user.identifier" name="id" [disabled]=true>
+			</mat-form-field>
 
-        <!-- Hora de Salida -->
-        <mat-form-field class="mat-input" appearance="outline">
-          <mat-label>Hora de Fin</mat-label>
-          <input type="time" matInput [(ngModel)]="user.end_time" [disabled]=true>
-        </mat-form-field>
+			<!-- Input Nombre -->
+			<mat-form-field class="mat-input" appearance="outline">
+				<mat-label>Nombre</mat-label>
+				<input matInput [(ngModel)]="user.first_name" placeholder="Escribe Nombre" [disabled]=true>
+			</mat-form-field>
 
-        <!-- Puesto -->
-        <mat-form-field class="mat-input" appearance="outline">
-          <mat-label>Puesto</mat-label>
-          <input matInput [(ngModel)]="user.job" placeholder="Escribe Iniciales" [disabled]=true>
-        </mat-form-field>
+			<!-- Input Apellidos -->
+			<mat-form-field class="mat-input" appearance="outline">
+				<mat-label>Apellidos</mat-label>
+				<input matInput [(ngModel)]="user.last_name" placeholder="Escribe Apellidos" [disabled]=true>
+			</mat-form-field>
 
-        <!-- Input Correo -->
-        <mat-form-field class="mat-input" appearance="outline">
-          <mat-label>Correo Electrónico</mat-label>
-          <input matInput [(ngModel)]="user.email" placeholder="Escribe Correo Electrónico" [disabled]=true>
-        </mat-form-field>
-      </div>
-    </div>
-    
-    <div class="section-right">
-      <div class="title-container">
-        <span class="title">Control</span>
-      </div>
-    </div>
+			<!-- Hora de Entrada -->
+			<mat-form-field class="mat-input" appearance="outline">
+				<mat-label>Hora de Inicio</mat-label>
+				<input type="time" matInput [(ngModel)]="user.start_time" [disabled]=true>
+			</mat-form-field>
+
+			<!-- Hora de Salida -->
+			<mat-form-field class="mat-input" appearance="outline">
+				<mat-label>Hora de Fin</mat-label>
+				<input type="time" matInput [(ngModel)]="user.end_time" [disabled]=true>
+			</mat-form-field>
+
+			<!-- Puesto -->
+			<mat-form-field class="mat-input" appearance="outline">
+				<mat-label>Puesto</mat-label>
+				<input matInput [(ngModel)]="user.job" placeholder="Escribe Iniciales" [disabled]=true>
+			</mat-form-field>
+
+			<!-- Input Correo -->
+			<mat-form-field class="mat-input" appearance="outline">
+				<mat-label>Correo Electrónico</mat-label>
+				<input matInput [(ngModel)]="user.email" placeholder="Escribe Correo Electrónico" [disabled]=true>
+			</mat-form-field>
+		</div>
+	</div>
+
+	<div class="section-right">
+		<div class="title-container">
+			<span class="title">Control</span>
+		</div>
+		<div class="cards-container">
+			<ul>
+				<li *ngFor='let event of paginatedEvents' class="card">
+					<div class="card-content">
+						<b>Fecha: </b> <i>{{getFormattedDate(event.start)}}</i><br>
+						<b>Título: </b> <i>{{event.title}}</i><br>
+						<b>Inicio: </b> <i>{{getFormattedTime(event.start)}}</i><br>
+						<b>Fin: </b> <i>{{getFormattedTime(event.end)}}</i><br>
+						<b>Lugar: </b> <i>{{event.place}}</i><br>
+						<b>Socio: </b> <i>{{event.partner}}</i><br>
+						<b>Descripción: </b> <i>{{event.description}}</i>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<mat-paginator 
+				[length]="apiEvents.length"
+				[pageSize]="pageSize"
+				[pageSizeOptions]="[9]"
+				(page)="handlePageEvent($event)">
+		</mat-paginator>
+	</div>
 </div>
-
-  

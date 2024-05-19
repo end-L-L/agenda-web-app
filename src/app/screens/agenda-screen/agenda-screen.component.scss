@@ -1,5 +1,5 @@
 h2 {
-    margin: 0;
+    margin-top: 40px;
     font-size: 16px;
 }
 
@@ -36,7 +36,7 @@ b {
 }
 
 .demo-app-sidebar-section {
-    padding: 2em;
+    padding: 0em;
 }
 
 .demo-app-sidebar-section h2 {
@@ -54,14 +54,34 @@ b {
     margin: 0 auto;
 }
 
+/* dashboard-button */
+
 .dash-button {
     margin-top: 20px;
 }
 
-.dash-button button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.button-link {
+    padding: 7px 5px;
+    background-color: #007BFF;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button-link:active {
+    background-color: #004080;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(2px);
 }
 
 .custom-event {
@@ -72,3 +92,22 @@ b {
     color: black;
     margin: auto;
 }
+
+
+/* mat-paginator */
+
+::ng-deep .mat-mdc-paginator {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+::ng-deep .mat-mdc-paginator-page-size-label {
+    display: none !important;
+}
+
+::ng-deep .mat-mdc-paginator-page-size {
+    display: none !important;
+}
+
+
+

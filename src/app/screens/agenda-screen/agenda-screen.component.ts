@@ -1,7 +1,8 @@
-import { Component, OnInit, signal, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, signal, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { FacadeService } from 'src/app/services/facade.service';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 // Full Calendar
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
@@ -21,17 +22,21 @@ import { FormModalComponent } from 'src/app/modals/form-modal/form-modal.compone
   templateUrl: './agenda-screen.component.html',
   styleUrls: ['./agenda-screen.component.scss']
 })
-
 export class AgendaScreenComponent implements OnInit {
 
   // eventos
   public apiEvents: any = [];
+  public paginatedEvents: any[] = []; // Array de eventos paginados
+  public pageSize = 4; // Número de eventos por página
+  public pageIndex = 0; // Índice de la página actual
 
   // id del evento
   public idEvent: number = 0;
 
-  // Login Token
-  public token:string = "";
+  // login token
+  public token: string = "";
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private facadeService: FacadeService,
@@ -46,7 +51,7 @@ export class AgendaScreenComponent implements OnInit {
     this.token = this.facadeService.getSessionToken();
 
     // No Token, Login
-    if(this.token == ""){
+    if (this.token == "") {
       this.router.navigate([""]);
     } else {
       this.obtenerEventos();
@@ -68,7 +73,6 @@ export class AgendaScreenComponent implements OnInit {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     initialView: 'dayGridMonth',
-    //initialEvents: INITIAL_EVENTS,
     weekends: true,
     editable: false,
     selectable: true,
@@ -79,8 +83,6 @@ export class AgendaScreenComponent implements OnInit {
     eventsSet: this.handleEvents.bind(this),
     locale: esLocale,
   });
-  
-  //currentEvents = signal<EventApi[]>([]);
 
   loadEvents() {
     this.apiService.obtenerEventos().subscribe(events => {
@@ -102,7 +104,6 @@ export class AgendaScreenComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-
     const dialogRef = this.dialog.open(FormModalComponent, {
       data: { info: selectInfo },
       height: '800px',
@@ -127,7 +128,6 @@ export class AgendaScreenComponent implements OnInit {
 
   handleEventClick(clickInfo: EventClickArg) {
     this.idEvent = Number(clickInfo.event._def.publicId);
-    console.log(clickInfo.event._def.publicId);
     if (confirm(`¿Desea Eliminar el Evento '${clickInfo.event.title}'?`)) {
       clickInfo.event.remove();
       this.apiService.eliminarEvento(this.idEvent).subscribe({
@@ -142,7 +142,6 @@ export class AgendaScreenComponent implements OnInit {
   }
 
   handleEvents(events: EventApi[]) {
-    //this.currentEvents.set(events);
     this.changeDetector.detectChanges();
   }
 
@@ -151,12 +150,24 @@ export class AgendaScreenComponent implements OnInit {
     this.apiService.obtenerEventos().subscribe({
       next: (response: any) => {
         this.apiEvents = response;
-        //console.log("Eventos: ", this.apiEvents);
+        this.updatePaginatedEvents();
       },
       error: () => {
         alert("¡error al obtener eventos!");
       }
     });
+  }
+
+  updatePaginatedEvents() {
+    const startIndex = this.pageIndex * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedEvents = this.apiEvents.slice(startIndex, endIndex);
+  }
+
+  handlePageEvent(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updatePaginatedEvents();
   }
 
   getFormattedDate(dateString: string): string {

@@ -45,7 +45,6 @@ export class RegistroContactoEmpresarialScreenComponent implements OnInit{
     if(this.token == ""){
       this.router.navigate([""]);
     }else{
-      console.log("Contacto Empresarial");
       this.contact = this.contactService.esquemaContactoEmpresarial();
 
       //Valida si Existe un Parámetro en la URL
@@ -54,7 +53,7 @@ export class RegistroContactoEmpresarialScreenComponent implements OnInit{
         this.edit = true;
         // Asigna el Valor del ID en URL
         this.idContact = this.activatedRoute.snapshot.params['id'];
-        console.log("ID Contact: ", this.idContact);
+        
         // Al Iniciar la Vista Obtiene el Contacto por su ID
         this.getRegistroContactoEmpresarial();
       }
@@ -70,7 +69,6 @@ export class RegistroContactoEmpresarialScreenComponent implements OnInit{
     // Validar
     this.errors = [];
 
-    console.log("Contact: ", this.contact);
     this.errors = this.contactService.validateContact(this.contact, this.contactModel)
 
     if(!$.isEmptyObject(this.errors)){
@@ -80,7 +78,6 @@ export class RegistroContactoEmpresarialScreenComponent implements OnInit{
     this.apiService.registrarContactoEmpresarial(this.contact).subscribe({
       next: (response) => {
         alert("Contacto Registrado Correctamente");
-        console.log("Contacto Registrado: ", response);
         this.router.navigate(["/home"]);
       },
       error: (error) => {
@@ -93,7 +90,6 @@ export class RegistroContactoEmpresarialScreenComponent implements OnInit{
     // Validar
     this.errors = [];
 
-    console.log("Contact: ", this.contact);
     this.errors = this.contactService.validateContact(this.contact, this.contactModel)
 
     if(!$.isEmptyObject(this.errors)){
@@ -103,7 +99,6 @@ export class RegistroContactoEmpresarialScreenComponent implements OnInit{
     this.apiService.actualizarContactoEmpresarial(this.contact).subscribe({
       next: (response) => {
         alert("Contacto Actualizado Correctamente");
-        console.log("Contacto Actualizado: ", response);
         this.router.navigate(["/home"]);
       },
       error: (error) => {
@@ -116,7 +111,6 @@ export class RegistroContactoEmpresarialScreenComponent implements OnInit{
     this.apiService.getRegistroContactoEmpresarial(this.idContact).subscribe({
       next:(response)=>{
         this.contact = response;
-        console.log("Datos Contacto: ", this.contact);
       },
       error: (error)=>{
         alert("¡Error!: Datos del Contacto no Obtenidos");

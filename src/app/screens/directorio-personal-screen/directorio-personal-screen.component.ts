@@ -79,7 +79,6 @@ export class DirectorioPersonalScreenComponent implements OnInit{
     this.apiService.obtenerContactosPersonales().subscribe({
       next: (response: any)=>{
         this.lista_contactos = response;
-        console.log("Lista users: ", this.lista_contactos);
         this.dataSource = new MatTableDataSource<DatosContacto>(this.lista_contactos as DatosContacto[]);
         
       },

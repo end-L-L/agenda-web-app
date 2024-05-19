@@ -79,7 +79,6 @@ export class DirectorioEmpresarialScreenComponent implements OnInit{
     this.apiService.obtenerContactosEmpresariales().subscribe({
       next: (response: any)=>{
         this.lista_contactos = response;
-        console.log("Lista users: ", this.lista_contactos);
         this.dataSource = new MatTableDataSource<DatosContacto>(this.lista_contactos as DatosContacto[]);
         
       },

@@ -42,7 +42,6 @@ export class RegistroScreenComponent implements OnInit{
 
   ngOnInit(): void {
     this.user = this.userService.esquemaUser();
-    console.log("User: ", this.user);
   }
 
   //Funciones para Password
@@ -77,9 +76,9 @@ export class RegistroScreenComponent implements OnInit{
   public registrar(){
     //Validar
     this.errors = [];
+
     this.errors = this.userService.validateUser(this.user)
-    console.log("Usuario: ", this.user);
-    console.log("start_time: ", typeof( this.user.start_time));
+
     if(!$.isEmptyObject(this.errors)){
       return false;
     }
@@ -92,7 +91,6 @@ export class RegistroScreenComponent implements OnInit{
       this.apiService.registrarUsuario(this.user).subscribe({
         next: (response) => {
           alert("Usuario registrado correctamente");
-          console.log("Usuario registrado: ", response);
           this.router.navigate(["/"]);
         },
         error: (error) => {

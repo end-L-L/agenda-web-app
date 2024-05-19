@@ -46,13 +46,13 @@ export class RegistroContactoPersonalScreenComponent implements OnInit{
       this.router.navigate([""]);
     }else{
       this.contact = this.contactService.esquemaContactoPersonal();
-      console.log("Contact: ", this.contact);
+      
       // Valida si Existe un Parámetro en la URL
       if(this.activatedRoute.snapshot.params['id'] != undefined){
         this.edit = true;
         // Asigna el Valor del ID en URL
         this.idContact = this.activatedRoute.snapshot.params['id'];
-        console.log("ID Contact: ", this.idContact);
+      
         // Al Iniciar la Vista Obtiene el Contacto por su ID
         this.getRegistroContactoPersonal();
       }
@@ -68,7 +68,6 @@ export class RegistroContactoPersonalScreenComponent implements OnInit{
     // Validar
     this.errors = [];
 
-    console.log("Contact: ", this.contact);
     this.errors = this.contactService.validateContact(this.contact, this.contactModel)
 
     if(!$.isEmptyObject(this.errors)){
@@ -78,7 +77,6 @@ export class RegistroContactoPersonalScreenComponent implements OnInit{
     this.apiService.registrarContactoPersonal(this.contact).subscribe({
       next: (response) => {
         alert("Contacto Registrado Correctamente");
-        console.log("Contacto Registrado: ", response);
         this.router.navigate(["/directorio-personal"]);
       },
       error: (error) => {
@@ -91,8 +89,7 @@ export class RegistroContactoPersonalScreenComponent implements OnInit{
     // Validar
     this.errors = [];
 
-    console.log("Contact: ", this.contact);
-
+    
     this.errors = this.contactService.validateContact(this.contact, this.contactModel)
     if(!$.isEmptyObject(this.errors)){
       return false;
@@ -101,7 +98,6 @@ export class RegistroContactoPersonalScreenComponent implements OnInit{
     this.apiService.actualizarContactoPersonal(this.contact).subscribe({
       next: (response) => {
         alert("Contacto Actualizado Correctamente");
-        console.log("Contacto Actualizado: ", response);
         this.router.navigate(["/directorio-personal"]);
       },
       error: (error) => {
@@ -115,7 +111,6 @@ export class RegistroContactoPersonalScreenComponent implements OnInit{
     this.apiService.getRegistroContactoPersonal(this.idContact).subscribe({
       next:(response)=>{
         this.contact = response;
-        console.log("Datos Contacto: ", this.contact);
       },
       error: (error)=>{
         alert("¡Error!: Datos del Contacto no Obtenidos");
